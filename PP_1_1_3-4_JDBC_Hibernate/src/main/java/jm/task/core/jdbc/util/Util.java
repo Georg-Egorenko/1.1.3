@@ -13,6 +13,14 @@ public class Util {
     private static final String USER = "Georg";
     private static final String PASSWORD = "Georg";
 
+    static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("MySQL JDBC Driver не найден", e);
+        }
+    }
+
     public static Connection getConnection() {
         try {
             return DriverManager.getConnection(URL, USER, PASSWORD);
